@@ -20,7 +20,6 @@ workflows:
           flutter pub get
       - name: Set up iOS project
         script: |
-          # Ši komanda sugeneruoja trūkstamus iOS failus (podhelper.rb ir kt.)
           flutter precache --ios
           flutter build ios --config-only
       - name: Install CocoaPods
@@ -28,8 +27,6 @@ workflows:
           cd ios && pod install
       - name: Build iOS
         script: |
-          # Pastaba: Norint gauti diegiamą .ipa failą, Codemagic nustatymuose 
-          # turėsite sukonfigūruoti iOS Code Signing (Apple Developer sertifikatus).
           flutter build ios --release --no-codesign
     artifacts:
       - build/ios/iphoneos/*.app
